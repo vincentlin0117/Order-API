@@ -3,13 +3,13 @@ package com.example.OrdersAPI.entity;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name="order")
+@Table(name="tblOrder")
 public class Order {
     
     @Column(name="orderNum")
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer orderNum;
+    private Integer orderId;
 
     private Integer orderUserId;
 
@@ -27,15 +27,15 @@ public class Order {
         this.date = date;
     }
 
-    public Order(Integer orderNum, Integer orderUserId, Double total, String date){
-        this.orderNum = orderNum;
+    public Order(Integer orderId, Integer orderUserId, Double total, String date){
+        this.orderId = orderId;
         this.orderUserId = orderUserId;
         this.total = total;
         this.date = date;
     }
 
-    public Integer getOrderNum(){
-        return orderNum;
+    public Integer getOrderId(){
+        return orderId;
     }
 
     public Integer getOrderUserId(){
@@ -50,8 +50,8 @@ public class Order {
         return date;
     }
 
-    public void setOrderNum(Integer orderNum){
-        this.orderNum = orderNum;
+    public void setOrderId(Integer orderId){
+        this.orderId = orderId;
     }
 
     public void setOrderUserId(Integer orderUserId){

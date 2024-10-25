@@ -6,32 +6,32 @@ import jakarta.persistence.Embeddable;
 
 @Embeddable
 public class OrderItemKey implements Serializable {
-    private int orderNum;
-    private int itemId;
+    private Integer orderPk;
+    private Integer itemPk;
 
     public OrderItemKey(){
 
     }
 
-    public OrderItemKey(int orderNum, int itemId){
-        this.orderNum = orderNum;
-        this.itemId = itemId;
+    public OrderItemKey(int orderPk, int itemPk){
+        this.orderPk = orderPk;
+        this.itemPk = itemPk;
     }
 
-    public int getOrderNum() {
-        return orderNum;
+    public Integer getOrderPk() {
+        return orderPk;
     }
 
-    public int getItemId() {
-        return itemId;
+    public Integer getItemPk() {
+        return itemPk;
     }
 
-    public void setOrderNum(int orderNum) {
-        this.orderNum = orderNum;
+    public void setOrderPk(int orderPk) {
+        this.orderPk = orderPk;
     }
 
-    public void setItemId(int itemId) {
-        this.itemId = itemId;
+    public void setItemPk(int itemPk) {
+        this.itemPk = itemPk;
     }
 
     @Override
@@ -39,11 +39,11 @@ public class OrderItemKey implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         OrderItemKey that = (OrderItemKey) o;
-        return orderNum == that.orderNum && itemId == that.itemId;
+        return orderPk == that.orderPk && itemPk == that.itemPk;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(orderNum, itemId);
+        return Objects.hash(orderPk, itemPk);
     }
 }

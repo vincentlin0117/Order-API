@@ -3,7 +3,7 @@ package com.example.OrdersAPI.entity;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name="user")
+@Table(name="tblUser")
 public class User {
     @Column(name="userId")
     @Id

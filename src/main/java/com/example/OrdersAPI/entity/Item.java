@@ -8,7 +8,7 @@ public class Item {
     @Column(name="itemId")
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int itemId;
+    private Integer itemId;
 
     private String name;
 
@@ -23,7 +23,7 @@ public class Item {
         this.price = price;
     }
 
-    public int getItemId() {
+    public Integer getItemId() {
         return itemId;
     }
 

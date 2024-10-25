@@ -8,39 +8,36 @@ public class OrderItemLink {
     @EmbeddedId
     private OrderItemKey id;
 
-    @ManyToOne
-    @MapsId("orderNum")
-    @JoinColumn(name = "orderNum")
-    private int orderNum;
+    private Integer orderNum;
 
-    private int itemId;
+    private Integer itemNum;
 
-    private int amount;
+    private Integer amount;
     
     public OrderItemLink(){
 
     }
 
-    public OrderItemLink(int orderNum, int itemId, int amount){
+    public OrderItemLink(int orderNum, int itemNum, int amount){
         this.orderNum = orderNum;
-        this.itemId = itemId;
+        this.itemNum = itemNum;
         this.amount = amount;
-        this.id = new OrderItemKey(orderNum,itemId);
+        this.id = new OrderItemKey(orderNum,itemNum);
     }
     
     public OrderItemKey getId() {
         return id;
     }
 
-    public int getOrderNum() {
+    public Integer getOrderNum() {
         return orderNum;
     }
 
-    public int getItemId() {
-        return itemId;
+    public Integer getItemNum() {
+        return itemNum;
     }
 
-    public int getAmount() {
+    public Integer getAmount() {
         return amount;
     }
 
@@ -52,8 +49,8 @@ public class OrderItemLink {
         this.orderNum = orderNum;
     }
 
-    public void setItemId(int itemId) {
-        this.itemId = itemId;
+    public void setItemNum(int itemNum) {
+        this.itemNum = itemNum;
     }
 
     public void setAmount(int amount) {
