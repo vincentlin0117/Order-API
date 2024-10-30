@@ -1,5 +1,9 @@
 package com.example.OrdersAPI.entity;
 
+import java.util.List;
+
+import com.example.OrdersAPI.entity.OrderItemLink.OrderItemLink;
+
 import jakarta.persistence.*;
 
 @Entity
@@ -9,13 +13,16 @@ public class Order {
     @Column(name="orderNum")
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer orderId;
+    private Integer orderNum;
 
     private Integer orderUserId;
 
     private Double total;
 
     private String date;
+
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+    private List<OrderItemLink> orderItems;
 
     public Order(){
 
@@ -27,15 +34,15 @@ public class Order {
         this.date = date;
     }
 
-    public Order(Integer orderId, Integer orderUserId, Double total, String date){
-        this.orderId = orderId;
+    public Order(Integer orderNum, Integer orderUserId, Double total, String date){
+        this.orderNum = orderNum;
         this.orderUserId = orderUserId;
         this.total = total;
         this.date = date;
     }
 
     public Integer getOrderId(){
-        return orderId;
+        return orderNum;
     }
 
     public Integer getOrderUserId(){
@@ -50,8 +57,8 @@ public class Order {
         return date;
     }
 
-    public void setOrderId(Integer orderId){
-        this.orderId = orderId;
+    public void setOrderId(Integer orderNum){
+        this.orderNum = orderNum;
     }
 
     public void setOrderUserId(Integer orderUserId){

@@ -1,5 +1,8 @@
 package com.example.OrdersAPI.entity.OrderItemLink;
 
+import com.example.OrdersAPI.entity.Item;
+import com.example.OrdersAPI.entity.Order;
+
 import jakarta.persistence.*;
 
 @Entity
@@ -8,9 +11,15 @@ public class OrderItemLink {
     @EmbeddedId
     private OrderItemKey id;
 
-    private Integer orderNum;
+    @ManyToOne
+    @MapsId("orderNum")
+    @JoinColumn(name = "orderNum")
+    private Order order;
 
-    private Integer itemNum;
+    @ManyToOne
+    @MapsId("itemId")
+    @JoinColumn(name = "itemId")
+    private Item item;
 
     private Integer amount;
     
@@ -18,23 +27,23 @@ public class OrderItemLink {
 
     }
 
-    public OrderItemLink(int orderNum, int itemNum, int amount){
-        this.orderNum = orderNum;
-        this.itemNum = itemNum;
+    public OrderItemLink(Order order, Item item, int amount){
+        this.order = order;
+        this.item = item;
         this.amount = amount;
-        this.id = new OrderItemKey(orderNum,itemNum);
+        this.id = new OrderItemKey(order.getOrderId(),item.getItemId());
     }
     
     public OrderItemKey getId() {
         return id;
     }
 
-    public Integer getOrderNum() {
-        return orderNum;
+    public Order getOrder() {
+        return order;
     }
 
-    public Integer getItemNum() {
-        return itemNum;
+    public Item getItem() {
+        return item;
     }
 
     public Integer getAmount() {
@@ -45,12 +54,12 @@ public class OrderItemLink {
         this.id = id;
     }
 
-    public void setOrderNum(int orderNum) {
-        this.orderNum = orderNum;
+    public void setOrderNum(Order orderNum) {
+        this.order = orderNum;
     }
 
-    public void setItemNum(int itemNum) {
-        this.itemNum = itemNum;
+    public void setItem(Item item) {
+        this.item = item;
     }
 
     public void setAmount(int amount) {

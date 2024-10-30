@@ -1,7 +1,8 @@
+drop table if exists orderItemLink;
 drop table if exists tblUser;
 drop table if exists tblOrder;
 drop table if exists item;
-drop table if exists orderItemLink;
+
 
 create table tblUser(
     userId int primary key auto_increment,
@@ -10,7 +11,7 @@ create table tblUser(
 );
 
 create table tblOrder(
-    orderId int primary key auto_increment,
+    orderNum int primary key auto_increment,
     orderUserId int not null,
     total double,
     date varchar(255)
@@ -26,7 +27,9 @@ CREATE TABLE orderItemLink (
     orderNum INT,
     itemId INT,
     amount INT,
-    PRIMARY KEY (orderNum, itemId)
+    PRIMARY KEY (orderNum, itemId),
+    FOREIGN KEY (orderNum) REFERENCES tblOrder(orderNum) ON DELETE CASCADE,
+    FOREIGN KEY (itemId) REFERENCES item(itemId) ON DELETE CASCADE
 );
 
 -- Insert test data into tblUser
